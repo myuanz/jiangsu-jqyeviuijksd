@@ -12,7 +12,8 @@ JSON.stringify($x('//ul/li/a').map(elem => ({
 ```
 <details>
 <summary>所有学校前缀</summary>
-```
+
+```JSON
 {
     "nju": "南京大学",
     "seu": "东南大学",
@@ -181,8 +182,19 @@ JSON.stringify($x('//ul/li/a').map(elem => ({
 ```
 </details>
 
+## 直接使用本项目
+- 设置 pip 到离你最近的镜像
+- `pip install jiangsu-jqyeviuijksd`
 
 ## 获取题目
 ```python
-python get_question.py --id <your id> --password <your password> --school-name <your school name>
+js-job get_question --id <your id> --password <your password> --school-name <your school name>
 ```
+
+---
+
+## 阅读本项目
+- 设置 pip 到离你最近的镜像
+- `pip install poetry`
+- `poetry install`
+- 开始捣腾~
