@@ -1,11 +1,13 @@
 [tool.poetry]
 name = "jiangsu-jqyeviuijksd"
-version = "0.1.0"
+version = "0.1.1"
 description = "可用于江苏就业知识竞赛的自动答题, 主要用于 Python 和 HTTP 的入门"
 authors = ["provefar <provefars@gmail.com>"]
 license = "GPL-3.0-or-later"
 readme = "README.md"
 keywords = ["就业知识竞赛", "就业知识", "江苏", "自动答题", "Python 新手入门"]
+homepage = "https://github.com/myuanz/jiangsu-jqyeviuijksd"
+repository = "https://github.com/myuanz/jiangsu-jqyeviuijksd"
 
 [tool.poetry.dependencies]
 python = ">=3.7"
@@ -23,6 +25,7 @@ jupyter = "^1.0.0"
 jupyterlab_code_formatter = "^1.3.6"
 jupyter_nbextensions_configurator = "^0.4.1"
 jupyterlab = "^2.2.8"
+pyinstaller = "^4.0"
 
 [tool.poetry.scripts]
 js-job = "jiangsu_jqyeviuijksd.console:main"

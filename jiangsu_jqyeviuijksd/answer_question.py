@@ -23,16 +23,13 @@ def answer_question(sess: requests.Session, questions: List[Question], delay: in
             print(index.text)
             break
         q = next((i for i in questions if i.topic == question))
-        print(q)
-        proxies = {"http": "http://127.0.0.1:8889", "https": "http://127.0.0.1:8889"}
 
         to_post = []
         if q.type == 'checkbox':
             to_post = [("value[]", i) for i in q.right] + [("tid", q.id)]
         else:
             to_post = [("value", q.right), ("tid", q.id)]
-        save_res = sess.post(const.SAVE_ANSWER_URL, to_post, proxies=proxies)
-        print([("value", i) for i in q.right] + [("tid", q.id)])
+        save_res = sess.post(const.SAVE_ANSWER_URL, to_post)
         if save_res.text != '{"msg":"ok"}':
             logger.error("出现未期待的返回值: %s", save_res.text)
             break

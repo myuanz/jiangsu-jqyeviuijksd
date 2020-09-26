@@ -10,8 +10,8 @@ import re
 from dataclasses import dataclass, field
 from PIL import Image
 
-from .school_prefix import prefix
-from .common import Constant, get_const, set_const
+from jiangsu_jqyeviuijksd.school_prefix import prefix
+from jiangsu_jqyeviuijksd.common import Constant, get_const, set_const
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

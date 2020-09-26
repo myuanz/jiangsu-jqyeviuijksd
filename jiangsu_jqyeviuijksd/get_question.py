@@ -3,7 +3,7 @@ from dataclasses import dataclass, asdict
 from json import load, loads, dumps, dump
 from pathlib2 import Path
 from typing import List
-from .common import get_const, Question
+from jiangsu_jqyeviuijksd.common import get_const, Question
 
 import requests
 

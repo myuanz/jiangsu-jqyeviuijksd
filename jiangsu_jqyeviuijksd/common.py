@@ -4,7 +4,7 @@ from json import loads
 from typing import Optional, List
 from logging import getLogger
 
-from .school_prefix import prefix
+from jiangsu_jqyeviuijksd.school_prefix import prefix
 
 logger = getLogger(__name__)
 

@@ -1,9 +1,23 @@
 # jiangsu-jqyeviuijksd
 http://www.91job.org.cn/default/contest 的自动做题工具
 
-仅供 Python 和 HTTP 相关知识的学习交流只用, 勿用于其他途径, 作者不承担责任
+仅供 Python 和 HTTP 相关知识的学习交流只用, 勿用于其他途径, 作者不承担任何连带责任
 
-## 获取所有学校前缀
+## 直接使用本项目
+1. 正常安装 Python3.7, 由于用到了`tensorflow`只能固定在此版本. 
+2. `python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple jiangsu-jqyeviuijksd`
+3. `js-job answer-question -u <your-id> -p <your-password> -s <your-school>`
+
+## 如果用于研究
+1. `git clone https://github.com/myuanz/jiangsu-jqyeviuijksd`
+2. `pip install -i https://pypi.tuna.tsinghua.edu.cn/simple poetry`
+3. `poetry install`
+4. `从 console.py 开始读`
+
+--- 
+## 其他使用
+
+## 如何获取所有学校前缀?
 在 http://www.91job.org.cn/default/contest 控制台运行以下代码获取
 ```javascript
 JSON.stringify($x('//ul/li/a').map(elem => ({
@@ -182,19 +196,34 @@ JSON.stringify($x('//ul/li/a').map(elem => ({
 ```
 </details>
 
-## 直接使用本项目
-- 设置 pip 到离你最近的镜像
-- `pip install jiangsu-jqyeviuijksd`
 
-## 获取题目
-```python
-js-job get_question --id <your id> --password <your password> --school-name <your school name>
+## 如何获取题目?
+```shell script
+> js-job get-question-and-save --help
+仅供 Python 和 HTTP 相关知识的学习交流只用, 勿用于其他途径, 作者不承担任何连带责任
+
+Usage: js-job get-question-and-save [OPTIONS]
+
+  获取答案并保存, 需特殊条件, 除研究外勿用
+
+Options:
+  -u TEXT  学号  [required]
+  -p TEXT  密码  [required]
+  -s TEXT  学校名  [required]
+  --help   Show this message and exit.
 ```
+## 如何自动登录?
+```shell script
+> js-job get-sess --help
+仅供 Python 和 HTTP 相关知识的学习交流只用, 勿用于其他途径, 作者不承担任何连带责任
 
----
+Usage: js-job get-sess [OPTIONS]
 
-## 阅读本项目
-- 设置 pip 到离你最近的镜像
-- `pip install poetry`
-- `poetry install`
-- 开始捣腾~
+  使用用户名和密码获取会话, 自动计算验证码
+
+Options:
+  -u TEXT  学号  [required]
+  -p TEXT  密码  [required]
+  -s TEXT  学校名  [required]
+  --help   Show this message and exit.
+```
