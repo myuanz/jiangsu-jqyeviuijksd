@@ -31,3 +31,16 @@ class Constant:
         self.CAPTCHA_URL = f"{self.ROOT_URL}/user/captcha/v/5f6eb838209d2"
         self.LOGIN_URL = f"{self.ROOT_URL}/user/login?referer=/contest/question&callback=login"
         self.QUESTION_PAGE_URL = f"{self.ROOT_URL}/contest/question"
+
+
+const = Constant('南京大学')
+
+
+def set_const(new_const: Constant) -> Constant:
+    global const
+    const = new_const
+    return const
+
+def get_const() -> Constant:
+    global const
+    return const
