@@ -11,10 +11,10 @@ from dataclasses import dataclass, field
 from PIL import Image
 
 from .school_prefix import prefix
-from .common import Constant
-
+from .common import Constant, get_const, set_const
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 ocr: Optional[muggle_ocr.SDK] = None
 fake = Faker()
 
@@ -30,9 +30,11 @@ def get_session(username: str, password: str, school_name: str) -> requests.Sess
     :param school_name: 学校
     :return:
     """
-    const = Constant(school_name)
+    const = set_const(Constant(school_name))
 
     ua = fake.chrome()
+    while 'Windows NT' not in ua:
+        ua = fake.chrome()
     headers = {"User-Agent": ua}
 
     sess = requests.Session()
@@ -47,7 +49,7 @@ def get_session(username: str, password: str, school_name: str) -> requests.Sess
             captcha = input('请输入验证码: ')
         else:
             captcha = ocr.predict(img_res.content)
-        logging.info('captcha 自动识别结果: %s' % captcha)
+        logging.info('captcha 识别结果: %s' % captcha)
         LOGIN_DATA = {
             "username": username,
             "university": "",
@@ -58,8 +60,8 @@ def get_session(username: str, password: str, school_name: str) -> requests.Sess
         }
         login_res = sess.post(const.LOGIN_URL, data=LOGIN_DATA)
         if "验证码不正确" in login_res.text:
-            if i != 0:
-                logging.info(f'验证码自动识别错误, 进入手动模式')
+            if i == 0:
+                logging.error(f'验证码自动识别错误, 进入手动模式')
 
             if i == max_try - 1:
                 raise Exception(f"验证码识别错误, 请重试")
@@ -67,4 +69,4 @@ def get_session(username: str, password: str, school_name: str) -> requests.Sess
             raise Exception(f"登录未成功, 死亡前消息为: {login_res.text}")
         else:
             logging.info(f'登录成功: {username}')
-        return sess
+            return sess
