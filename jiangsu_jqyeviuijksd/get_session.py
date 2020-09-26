@@ -33,7 +33,7 @@ def get_session(username: str, password: str, school_name: str) -> requests.Sess
     const = set_const(Constant(school_name))
 
     ua = fake.chrome()
-    while 'Windows NT' not in ua:
+    while "Windows NT" not in ua:
         ua = fake.chrome()
     headers = {"User-Agent": ua}
 
@@ -46,10 +46,10 @@ def get_session(username: str, password: str, school_name: str) -> requests.Sess
         if i != 0:
             img: Image = Image.open(BytesIO(img_res.content))
             img.show()
-            captcha = input('请输入验证码: ')
+            captcha = input("请输入验证码: ")
         else:
             captcha = ocr.predict(img_res.content)
-        logging.info('captcha 识别结果: %s' % captcha)
+        logging.info("captcha 识别结果: %s" % captcha)
         LOGIN_DATA = {
             "username": username,
             "university": "",
@@ -61,12 +61,12 @@ def get_session(username: str, password: str, school_name: str) -> requests.Sess
         login_res = sess.post(const.LOGIN_URL, data=LOGIN_DATA)
         if "验证码不正确" in login_res.text:
             if i == 0:
-                logging.error(f'验证码自动识别错误, 进入手动模式')
+                logging.error(f"验证码自动识别错误, 进入手动模式")
 
             if i == max_try - 1:
                 raise Exception(f"验证码识别错误, 请重试")
-        elif '登录成功' not in login_res.text:
+        elif "登录成功" not in login_res.text:
             raise Exception(f"登录未成功, 死亡前消息为: {login_res.text}")
         else:
-            logging.info(f'登录成功: {username}')
+            logging.info(f"登录成功: {username}")
             return sess

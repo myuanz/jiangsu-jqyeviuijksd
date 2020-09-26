@@ -35,7 +35,7 @@ def get_question_and_save(u: str, p: str, s: str):
     from .get_session import get_session
 
     sess = get_session(u, p, s)
-    questions = get_question(sess, Path('./questions.json'))
+    questions = get_question(sess, Path('./questions.json').absolute)
 
     logger.debug(questions)
 
@@ -48,19 +48,7 @@ def get_question_and_save(u: str, p: str, s: str):
 def answer_question(u: str, p: str, s: str, delay: int):
     from .answer_question import answer_question
     from .get_session import get_session
-    from .get_question import get_question
-
-
-    sess = None
-
-    try:
-        get_question_from_file("./question.json")
-        print(1)
-    except:
-        logger.warning('未找到问题文件, 自动下载')
-        sess = get_session(u, p, s)
-        get_question(sess)
-    questions = get_question_from_file("./question.json")
-    if not sess:
-        sess = get_session(u, p, s)
+    path = Path('./questions.json').absolute()
+    questions = get_question_from_file(path)
+    sess = get_session(u, p, s)
     answer_question(sess, questions, delay)

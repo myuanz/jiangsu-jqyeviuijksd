@@ -20,15 +20,26 @@ def answer_question(sess: requests.Session, questions: List[Question], delay: in
             question = question[0][3:]  # 前三个是废字符
         else:
             logger.info("未找到问题, 退出")
+            print(index.text)
             break
         q = next((i for i in questions if i.topic == question))
-        save_res = sess.post(const.SAVE_ANSWER_URL, {"value": q.right, "tid": q.id})
-        if save_res.json() != {"msg": "ok"}:
-            logger.error("出现未期待的返回值: %s", save_res.json())
+        print(q)
+        proxies = {"http": "http://127.0.0.1:8889", "https": "http://127.0.0.1:8889"}
+
+        to_post = []
+        if q.type == 'checkbox':
+            to_post = [("value[]", i) for i in q.right] + [("tid", q.id)]
+        else:
+            to_post = [("value", q.right), ("tid", q.id)]
+        save_res = sess.post(const.SAVE_ANSWER_URL, to_post, proxies=proxies)
+        print([("value", i) for i in q.right] + [("tid", q.id)])
+        if save_res.text != '{"msg":"ok"}':
+            logger.error("出现未期待的返回值: %s", save_res.text)
             break
 
         logger.info(q.topic)
-        logger.info("\t" + "\n\t".join([a.title for a in q.answers]))
+        for a in q.answers:
+            logger.info("\t" + a.title)
         logger.info("\t答案: %s", q.right)
         logger.info("\t解析: %s\n", q.know)
 

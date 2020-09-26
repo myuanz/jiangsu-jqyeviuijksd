@@ -7,7 +7,7 @@ def test_version():
 
 
 def test_question():
-    json = '''
+    json = """
 [
     {
         "id": "510",
@@ -50,5 +50,5 @@ def test_question():
         ]
     }
 ]
-    '''
+    """
     print(Question.from_json(json))

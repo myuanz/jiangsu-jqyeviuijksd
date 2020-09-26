@@ -29,7 +29,7 @@ class Question:
     @staticmethod
     def from_json(json: str) -> List["Question"]:
         j = loads(json)
-        ret = [Question(**i) for i in j]
+        ret = [Question(**dict(i, answers=[Answer(**k) for k in i['answers']])) for i in j]
         return ret
 
 
@@ -84,8 +84,7 @@ def get_const() -> Constant:
 
 def get_question_from_file(filepath: str) -> List[Question]:
     if not os.path.exists(filepath):
-        logger.error("未找到问题文件, 请运行 `js-job get-question-and-save` 以获取")
-        # raise Exception("未找到问题文件, 请运行 `js-job get-question-and-save` 以获取")
+        raise Exception("未找到问题文件, 请运行 `js-job get-question-and-save` 以获取")
 
     with open(filepath, "r") as f:
         json_str = f.read()
