@@ -3,7 +3,7 @@ from pathlib2 import Path
 import click
 import logging
 
-from jiangsu_jqyeviuijksd.common import get_const, get_question_from_file
+from jiangsu_jqyeviuijksd.common import get_const, get_question_from_file, root_path
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ def get_question_and_save(u: str, p: str, s: str):
     from jiangsu_jqyeviuijksd.get_session import get_session
 
     sess = get_session(u, p, s)
-    questions = get_question(sess, Path('./questions.json').absolute)
+    questions = get_question(sess, (Path(root_path) / 'questions.json').absolute())
 
     logger.debug(questions)
 
@@ -49,7 +49,7 @@ def answer_question(u: str, p: str, s: str, delay: int):
     """使用本命令自动做题"""
     from jiangsu_jqyeviuijksd.answer_question import answer_question
     from jiangsu_jqyeviuijksd.get_session import get_session
-    path = Path('./questions.json').absolute()
+    path = (Path(root_path) / 'questions.json').absolute()
     questions = get_question_from_file(path)
     sess = get_session(u, p, s)
     answer_question(sess, questions, delay)

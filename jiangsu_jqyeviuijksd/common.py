@@ -90,3 +90,6 @@ def get_question_from_file(filepath: str) -> List[Question]:
         json_str = f.read()
 
     return Question.from_json(json_str)
+
+
+root_path = os.path.split(os.path.realpath(__file__))[0]

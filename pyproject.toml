@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jiangsu-jqyeviuijksd"
-version = "0.1.1"
+version = "0.1.2"
 description = "可用于江苏就业知识竞赛的自动答题, 主要用于 Python 和 HTTP 的入门"
 authors = ["provefar <provefars@gmail.com>"]
 license = "GPL-3.0-or-later"
