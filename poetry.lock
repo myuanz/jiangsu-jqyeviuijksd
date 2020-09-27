@@ -253,7 +253,7 @@ type = "legacy"
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Composable command line interface toolkit"
 name = "click"
 optional = false
@@ -2173,7 +2173,7 @@ type = "legacy"
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 
 [metadata]
-content-hash = "5777ce7712a712a508ae763aa694e61986159acf9b8bbc124a1b6d6b96a797dd"
+content-hash = "915c053a2088b983bca9e433f0a039bbdcf33c20c8bb401aa8459361048dd084"
 lock-version = "1.0"
 python-versions = ">=3.7"
 
