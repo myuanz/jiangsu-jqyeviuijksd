@@ -12,7 +12,7 @@ http://www.91job.org.cn/default/contest 的自动做题工具
 1. `git clone https://github.com/myuanz/jiangsu-jqyeviuijksd`
 2. `pip install -i https://pypi.tuna.tsinghua.edu.cn/simple poetry`
 3. `poetry install`
-4. `从 console.py 开始读`
+4. 从 `console.py` 开始读
 
 --- 
 ## 其他使用
